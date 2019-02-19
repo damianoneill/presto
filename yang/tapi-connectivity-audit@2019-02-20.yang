@@ -1,0 +1,79 @@
+module tapi-connectivity-audit {
+     namespace "urn:onf:otcc:yang:tapi-connectivity-audit";
+     prefix tapi-connectivity-audit;
+     import tapi-common {
+         prefix tapi-common;
+     }
+     import tapi-topology {
+         prefix tapi-topology;
+     }
+     import tapi-connectivity {
+         prefix tapi-connectivity;
+     }
+
+     organization "ONF OTCC (Open Transport Configuration & Control) Project";
+     contact "
+         Project Web: <https://wiki.opennetworking.org/display/OTCC/TAPI>
+         Project List: <mailto:transport-api@opennetworking.org>
+         Editor: Karthik Sethuraman
+                 <mailto:karthik.sethuraman@necam.com>";
+     description "
+         This module contains TAPI Connectivity Model definitions.
+         Source: TapiConnectivity.uml
+         Copyright (c) 2018 Open Networking Foundation (ONF). All rights reserved.
+         License: This module is distributed under the Apache License 2.0";
+     revision 2019-02-20 {
+         description "ONF Transport API version 2.0.2
+         This YANG module has been generated from the TAPI UML Model using the IISOMI-Eagle xmi2yang mapping tool version .
+         <https://wiki.opennetworking.org/display/OIMT/IISOMI>
+         Changes in this revision: <https://github.com/OpenNetworkingFoundation/TAPI/blob/develop/change-log.md>";
+         reference "ONF-TR-527, ONF-TR-512, ONF-TR-531, RFC 6020, RFC 6087 and ONF TAPI UML model
+                   <https://github.com/OpenNetworkingFoundation/TAPI/tree/develop/UML>";
+
+      }
+
+        grouping connectivity-service-audit {
+            list end-point {
+                key 'local-id';
+                min-elements 2;
+                uses tapi-connectivity:connectivity-service-end-point;
+                description "none";
+            }
+            leaf connectivity-service-name {
+                type string;
+                description "Name of the connectivity service.";
+            }
+            leaf date-commissioned {
+                type string;
+                description "Date and time the connectivity service was created.";
+            }
+            uses tapi-common:service-spec;
+            uses tapi-common:admin-state-pac;
+        }
+
+
+        rpc get-connectivity-service-audit-list {
+            description "none";
+            output {
+                list service {
+                    uses connectivity-service-audit;
+                    description "none";
+                }
+            }
+        }
+        rpc get-connectivity-service-audit-details {
+            description "none";
+            input {
+                leaf service-id-or-name {
+                    type string;
+                    description "none";
+                }
+            }
+            output {
+                container service-audit {
+                    uses connectivity-service-audit;
+                    description "none";
+                }
+            }
+        }
+}

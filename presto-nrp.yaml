@@ -1,18 +1,16 @@
 ---
 swagger: "2.0"
 info:
-  description: "MEF 60 (PRESTO NRP) swagger definition"
-  version: "2018R2"
-  title: "mef-common,tapi-topology,tapi-common,tapi-connectivity,mef-common-types,nrm-connectivity,nrp-interface\
+  description: "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity\
+    \ API generated from yang definitions"
+  version: "1.0"
+  title: "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity\
     \ API"
 host: "localhost:1234"
-basePath: "/restconf"
 consumes:
-- "application/json"
-- "application/xml"
+- "application/yang-data+json"
 produces:
-- "application/json"
-- "application/xml"
+- "application/yang-data+json"
 paths:
   /data/context/:
     get:
@@ -430,6 +428,39 @@ paths:
           description: "Correct response"
           schema:
             $ref: "#/definitions/tapi.connectivity.GetConnectionDetailsOutput"
+        201:
+          description: "No response"
+        400:
+          description: "Internal error"
+  /operations/get-connectivity-service-audit-details/:
+    post:
+      tags:
+      - "tapi-connectivity-audit"
+      parameters:
+      - in: "body"
+        name: "body-param"
+        required: false
+        schema:
+          $ref: "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput"
+      responses:
+        200:
+          description: "Correct response"
+          schema:
+            $ref: "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditDetailsOutput"
+        201:
+          description: "No response"
+        400:
+          description: "Internal error"
+  /operations/get-connectivity-service-audit-list/:
+    post:
+      tags:
+      - "tapi-connectivity-audit"
+      parameters: []
+      responses:
+        200:
+          description: "Correct response"
+          schema:
+            $ref: "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditListOutput"
         201:
           description: "No response"
         400:
@@ -2417,6 +2448,49 @@ definitions:
           service:
             description: "none"
             $ref: "#/definitions/tapi.connectivity.updateconnectivityservice.output.Service"
+  tapi.connectivity.audit.ConnectivityServiceAudit:
+    allOf:
+    - $ref: "#/definitions/tapi.common.AdminStatePac"
+    - $ref: "#/definitions/tapi.common.GlobalClass"
+    - type: "object"
+      properties:
+        date-commissioned:
+          type: "string"
+          description: "Date and time the connectivity service was created."
+        connectivity-service-name:
+          type: "string"
+          description: "Name of the connectivity service."
+        end-point:
+          type: "array"
+          description: "none"
+          items:
+            $ref: "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
+  tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput:
+    properties:
+      input:
+        type: "object"
+        properties:
+          service-id-or-name:
+            type: "string"
+            description: "none"
+  tapi.connectivity.audit.GetConnectivityServiceAuditDetailsOutput:
+    properties:
+      output:
+        type: "object"
+        properties:
+          service-audit:
+            description: "none"
+            $ref: "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+  tapi.connectivity.audit.GetConnectivityServiceAuditListOutput:
+    properties:
+      output:
+        type: "object"
+        properties:
+          service:
+            type: "array"
+            description: "none"
+            items:
+              $ref: "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
   tapi.connectivity.connectivitycontext.ConnectivityService:
     allOf:
     - $ref: "#/definitions/nrp.interface.ConnectivityServiceAugmentation1"
