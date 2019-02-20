@@ -47,6 +47,10 @@ module tapi-connectivity-audit {
                 type string;
                 description "Date and time the connectivity service was created.";
             }
+            leaf date-decommissioned {
+                type string;
+                description "Date and time the connectivity service was deleted.";
+            }
             uses tapi-common:service-spec;
             uses tapi-common:admin-state-pac;
         }
