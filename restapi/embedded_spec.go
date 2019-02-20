@@ -19,21 +19,18 @@ var (
 func init() {
 	SwaggerJSON = json.RawMessage([]byte(`{
   "consumes": [
-    "application/json",
-    "application/xml"
+    "application/yang-data+json"
   ],
   "produces": [
-    "application/json",
-    "application/xml"
+    "application/yang-data+json"
   ],
   "swagger": "2.0",
   "info": {
-    "description": "MEF 60 (PRESTO NRP) swagger definition",
-    "title": "mef-common,tapi-topology,tapi-common,tapi-connectivity,mef-common-types,nrm-connectivity,nrp-interface API",
-    "version": "2018R2"
+    "description": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions",
+    "title": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API",
+    "version": "1.0"
   },
   "host": "localhost:1234",
-  "basePath": "/restconf",
   "paths": {
     "/data/context/": {
       "get": {
@@ -667,6 +664,57 @@ func init() {
             "description": "Correct response",
             "schema": {
               "$ref": "#/definitions/tapi.connectivity.GetConnectionDetailsOutput"
+            }
+          },
+          "201": {
+            "description": "No response"
+          },
+          "400": {
+            "description": "Internal error"
+          }
+        }
+      }
+    },
+    "/operations/get-connectivity-service-audit-details/": {
+      "post": {
+        "tags": [
+          "tapi-connectivity-audit"
+        ],
+        "parameters": [
+          {
+            "name": "body-param",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Correct response",
+            "schema": {
+              "$ref": "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditDetailsOutput"
+            }
+          },
+          "201": {
+            "description": "No response"
+          },
+          "400": {
+            "description": "Internal error"
+          }
+        }
+      }
+    },
+    "/operations/get-connectivity-service-audit-list/": {
+      "post": {
+        "tags": [
+          "tapi-connectivity-audit"
+        ],
+        "responses": {
+          "200": {
+            "description": "Correct response",
+            "schema": {
+              "$ref": "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditListOutput"
             }
           },
           "201": {
@@ -3174,6 +3222,82 @@ func init() {
             "service": {
               "description": "none",
               "$ref": "#/definitions/tapi.connectivity.updateconnectivityservice.output.Service"
+            }
+          }
+        }
+      }
+    },
+    "tapi.connectivity.audit.ConnectivityServiceAudit": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/tapi.common.AdminStatePac"
+        },
+        {
+          "$ref": "#/definitions/tapi.common.GlobalClass"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "connectivity-service-name": {
+              "description": "Name of the connectivity service.",
+              "type": "string"
+            },
+            "date-commissioned": {
+              "description": "Date and time the connectivity service was created.",
+              "type": "string"
+            },
+            "date-decommissioned": {
+              "description": "Date and time the connectivity service was deleted.",
+              "type": "string"
+            },
+            "end-point": {
+              "description": "none",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput": {
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "service-id-or-name": {
+              "description": "none",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "tapi.connectivity.audit.GetConnectivityServiceAuditDetailsOutput": {
+      "properties": {
+        "output": {
+          "type": "object",
+          "properties": {
+            "service-audit": {
+              "description": "none",
+              "$ref": "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+            }
+          }
+        }
+      }
+    },
+    "tapi.connectivity.audit.GetConnectivityServiceAuditListOutput": {
+      "properties": {
+        "output": {
+          "type": "object",
+          "properties": {
+            "service": {
+              "description": "none",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+              }
             }
           }
         }
@@ -4762,21 +4886,18 @@ func init() {
 }`))
 	FlatSwaggerJSON = json.RawMessage([]byte(`{
   "consumes": [
-    "application/json",
-    "application/xml"
+    "application/yang-data+json"
   ],
   "produces": [
-    "application/json",
-    "application/xml"
+    "application/yang-data+json"
   ],
   "swagger": "2.0",
   "info": {
-    "description": "MEF 60 (PRESTO NRP) swagger definition",
-    "title": "mef-common,tapi-topology,tapi-common,tapi-connectivity,mef-common-types,nrm-connectivity,nrp-interface API",
-    "version": "2018R2"
+    "description": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions",
+    "title": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API",
+    "version": "1.0"
   },
   "host": "localhost:1234",
-  "basePath": "/restconf",
   "paths": {
     "/data/context/": {
       "get": {
@@ -5410,6 +5531,57 @@ func init() {
             "description": "Correct response",
             "schema": {
               "$ref": "#/definitions/tapi.connectivity.GetConnectionDetailsOutput"
+            }
+          },
+          "201": {
+            "description": "No response"
+          },
+          "400": {
+            "description": "Internal error"
+          }
+        }
+      }
+    },
+    "/operations/get-connectivity-service-audit-details/": {
+      "post": {
+        "tags": [
+          "tapi-connectivity-audit"
+        ],
+        "parameters": [
+          {
+            "name": "body-param",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Correct response",
+            "schema": {
+              "$ref": "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditDetailsOutput"
+            }
+          },
+          "201": {
+            "description": "No response"
+          },
+          "400": {
+            "description": "Internal error"
+          }
+        }
+      }
+    },
+    "/operations/get-connectivity-service-audit-list/": {
+      "post": {
+        "tags": [
+          "tapi-connectivity-audit"
+        ],
+        "responses": {
+          "200": {
+            "description": "Correct response",
+            "schema": {
+              "$ref": "#/definitions/tapi.connectivity.audit.GetConnectivityServiceAuditListOutput"
             }
           },
           "201": {
@@ -7917,6 +8089,82 @@ func init() {
             "service": {
               "description": "none",
               "$ref": "#/definitions/tapi.connectivity.updateconnectivityservice.output.Service"
+            }
+          }
+        }
+      }
+    },
+    "tapi.connectivity.audit.ConnectivityServiceAudit": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/tapi.common.AdminStatePac"
+        },
+        {
+          "$ref": "#/definitions/tapi.common.GlobalClass"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "connectivity-service-name": {
+              "description": "Name of the connectivity service.",
+              "type": "string"
+            },
+            "date-commissioned": {
+              "description": "Date and time the connectivity service was created.",
+              "type": "string"
+            },
+            "date-decommissioned": {
+              "description": "Date and time the connectivity service was deleted.",
+              "type": "string"
+            },
+            "end-point": {
+              "description": "none",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput": {
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "service-id-or-name": {
+              "description": "none",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "tapi.connectivity.audit.GetConnectivityServiceAuditDetailsOutput": {
+      "properties": {
+        "output": {
+          "type": "object",
+          "properties": {
+            "service-audit": {
+              "description": "none",
+              "$ref": "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+            }
+          }
+        }
+      }
+    },
+    "tapi.connectivity.audit.GetConnectivityServiceAuditListOutput": {
+      "properties": {
+        "output": {
+          "type": "object",
+          "properties": {
+            "service": {
+              "description": "none",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+              }
             }
           }
         }

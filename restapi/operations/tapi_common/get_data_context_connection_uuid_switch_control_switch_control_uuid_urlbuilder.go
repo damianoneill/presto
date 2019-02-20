@@ -39,7 +39,7 @@ func (o *GetDataContextConnectionUUIDSwitchControlSwitchControlUUIDURL) SetBaseP
 
 // Build a url path and query string
 func (o *GetDataContextConnectionUUIDSwitchControlSwitchControlUUIDURL) Build() (*url.URL, error) {
-	var result url.URL
+	var _result url.URL
 
 	var _path = "/data/context/connection={uuid}/switch-control={switch-control-uuid}/"
 
@@ -58,12 +58,9 @@ func (o *GetDataContextConnectionUUIDSwitchControlSwitchControlUUIDURL) Build() 
 	}
 
 	_basePath := o._basePath
-	if _basePath == "" {
-		_basePath = "/restconf"
-	}
-	result.Path = golangswaggerpaths.Join(_basePath, _path)
+	_result.Path = golangswaggerpaths.Join(_basePath, _path)
 
-	return &result, nil
+	return &_result, nil
 }
 
 // Must is a helper function to panic when the url builder returns an error
