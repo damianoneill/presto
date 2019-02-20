@@ -21,6 +21,7 @@ import (
 
 	"github.com/damianoneill/presto/restapi/operations/tapi_common"
 	"github.com/damianoneill/presto/restapi/operations/tapi_connectivity"
+	"github.com/damianoneill/presto/restapi/operations/tapi_connectivity_audit"
 	"github.com/damianoneill/presto/restapi/operations/tapi_path_computation"
 	"github.com/damianoneill/presto/restapi/operations/tapi_topology"
 )
@@ -41,9 +42,7 @@ func NewPrestoAPI(spec *loads.Document) *PrestoAPI {
 		APIKeyAuthenticator: security.APIKeyAuth,
 		BearerAuthenticator: security.BearerAuth,
 		JSONConsumer:        runtime.JSONConsumer(),
-		XMLConsumer:         runtime.XMLConsumer(),
 		JSONProducer:        runtime.JSONProducer(),
-		XMLProducer:         runtime.XMLProducer(),
 		TapiCommonGetDataContextHandler: tapi_common.GetDataContextHandlerFunc(func(params tapi_common.GetDataContextParams) middleware.Responder {
 			return middleware.NotImplemented("operation TapiCommonGetDataContext has not yet been implemented")
 		}),
@@ -104,6 +103,12 @@ func NewPrestoAPI(spec *loads.Document) *PrestoAPI {
 		TapiConnectivityPostOperationsGetConnectionDetailsHandler: tapi_connectivity.PostOperationsGetConnectionDetailsHandlerFunc(func(params tapi_connectivity.PostOperationsGetConnectionDetailsParams) middleware.Responder {
 			return middleware.NotImplemented("operation TapiConnectivityPostOperationsGetConnectionDetails has not yet been implemented")
 		}),
+		TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditDetailsHandler: tapi_connectivity_audit.PostOperationsGetConnectivityServiceAuditDetailsHandlerFunc(func(params tapi_connectivity_audit.PostOperationsGetConnectivityServiceAuditDetailsParams) middleware.Responder {
+			return middleware.NotImplemented("operation TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditDetails has not yet been implemented")
+		}),
+		TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditListHandler: tapi_connectivity_audit.PostOperationsGetConnectivityServiceAuditListHandlerFunc(func(params tapi_connectivity_audit.PostOperationsGetConnectivityServiceAuditListParams) middleware.Responder {
+			return middleware.NotImplemented("operation TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditList has not yet been implemented")
+		}),
 		TapiConnectivityPostOperationsGetConnectivityServiceDetailsHandler: tapi_connectivity.PostOperationsGetConnectivityServiceDetailsHandlerFunc(func(params tapi_connectivity.PostOperationsGetConnectivityServiceDetailsParams) middleware.Responder {
 			return middleware.NotImplemented("operation TapiConnectivityPostOperationsGetConnectivityServiceDetails has not yet been implemented")
 		}),
@@ -143,7 +148,7 @@ func NewPrestoAPI(spec *loads.Document) *PrestoAPI {
 	}
 }
 
-/*PrestoAPI MEF 60 (PRESTO NRP) swagger definition */
+/*PrestoAPI mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions */
 type PrestoAPI struct {
 	spec            *loads.Document
 	context         *middleware.Context
@@ -165,15 +170,11 @@ type PrestoAPI struct {
 	// It has a default implemention in the security package, however you can replace it for your particular usage.
 	BearerAuthenticator func(string, security.ScopedTokenAuthentication) runtime.Authenticator
 
-	// JSONConsumer registers a consumer for a "application/json" mime type
+	// JSONConsumer registers a consumer for a "application/yang-data+json" mime type
 	JSONConsumer runtime.Consumer
-	// XMLConsumer registers a consumer for a "application/xml" mime type
-	XMLConsumer runtime.Consumer
 
-	// JSONProducer registers a producer for a "application/json" mime type
+	// JSONProducer registers a producer for a "application/yang-data+json" mime type
 	JSONProducer runtime.Producer
-	// XMLProducer registers a producer for a "application/xml" mime type
-	XMLProducer runtime.Producer
 
 	// TapiCommonGetDataContextHandler sets the operation handler for the get data context operation
 	TapiCommonGetDataContextHandler tapi_common.GetDataContextHandler
@@ -215,6 +216,10 @@ type PrestoAPI struct {
 	TapiPathComputationPostOperationsDeleteP2PPathHandler tapi_path_computation.PostOperationsDeleteP2PPathHandler
 	// TapiConnectivityPostOperationsGetConnectionDetailsHandler sets the operation handler for the post operations get connection details operation
 	TapiConnectivityPostOperationsGetConnectionDetailsHandler tapi_connectivity.PostOperationsGetConnectionDetailsHandler
+	// TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditDetailsHandler sets the operation handler for the post operations get connectivity service audit details operation
+	TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditDetailsHandler tapi_connectivity_audit.PostOperationsGetConnectivityServiceAuditDetailsHandler
+	// TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditListHandler sets the operation handler for the post operations get connectivity service audit list operation
+	TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditListHandler tapi_connectivity_audit.PostOperationsGetConnectivityServiceAuditListHandler
 	// TapiConnectivityPostOperationsGetConnectivityServiceDetailsHandler sets the operation handler for the post operations get connectivity service details operation
 	TapiConnectivityPostOperationsGetConnectivityServiceDetailsHandler tapi_connectivity.PostOperationsGetConnectivityServiceDetailsHandler
 	// TapiConnectivityPostOperationsGetConnectivityServiceListHandler sets the operation handler for the post operations get connectivity service list operation
@@ -298,16 +303,8 @@ func (o *PrestoAPI) Validate() error {
 		unregistered = append(unregistered, "JSONConsumer")
 	}
 
-	if o.XMLConsumer == nil {
-		unregistered = append(unregistered, "XMLConsumer")
-	}
-
 	if o.JSONProducer == nil {
 		unregistered = append(unregistered, "JSONProducer")
-	}
-
-	if o.XMLProducer == nil {
-		unregistered = append(unregistered, "XMLProducer")
 	}
 
 	if o.TapiCommonGetDataContextHandler == nil {
@@ -388,6 +385,14 @@ func (o *PrestoAPI) Validate() error {
 
 	if o.TapiConnectivityPostOperationsGetConnectionDetailsHandler == nil {
 		unregistered = append(unregistered, "tapi_connectivity.PostOperationsGetConnectionDetailsHandler")
+	}
+
+	if o.TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditDetailsHandler == nil {
+		unregistered = append(unregistered, "tapi_connectivity_audit.PostOperationsGetConnectivityServiceAuditDetailsHandler")
+	}
+
+	if o.TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditListHandler == nil {
+		unregistered = append(unregistered, "tapi_connectivity_audit.PostOperationsGetConnectivityServiceAuditListHandler")
 	}
 
 	if o.TapiConnectivityPostOperationsGetConnectivityServiceDetailsHandler == nil {
@@ -471,11 +476,8 @@ func (o *PrestoAPI) ConsumersFor(mediaTypes []string) map[string]runtime.Consume
 	for _, mt := range mediaTypes {
 		switch mt {
 
-		case "application/json":
-			result["application/json"] = o.JSONConsumer
-
-		case "application/xml":
-			result["application/xml"] = o.XMLConsumer
+		case "application/yang-data+json":
+			result["application/yang-data+json"] = o.JSONConsumer
 
 		}
 
@@ -494,11 +496,8 @@ func (o *PrestoAPI) ProducersFor(mediaTypes []string) map[string]runtime.Produce
 	for _, mt := range mediaTypes {
 		switch mt {
 
-		case "application/json":
-			result["application/json"] = o.JSONProducer
-
-		case "application/xml":
-			result["application/xml"] = o.XMLProducer
+		case "application/yang-data+json":
+			result["application/yang-data+json"] = o.JSONProducer
 
 		}
 
@@ -641,6 +640,16 @@ func (o *PrestoAPI) initHandlerCache() {
 		o.handlers["POST"] = make(map[string]http.Handler)
 	}
 	o.handlers["POST"]["/operations/get-connection-details"] = tapi_connectivity.NewPostOperationsGetConnectionDetails(o.context, o.TapiConnectivityPostOperationsGetConnectionDetailsHandler)
+
+	if o.handlers["POST"] == nil {
+		o.handlers["POST"] = make(map[string]http.Handler)
+	}
+	o.handlers["POST"]["/operations/get-connectivity-service-audit-details"] = tapi_connectivity_audit.NewPostOperationsGetConnectivityServiceAuditDetails(o.context, o.TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditDetailsHandler)
+
+	if o.handlers["POST"] == nil {
+		o.handlers["POST"] = make(map[string]http.Handler)
+	}
+	o.handlers["POST"]["/operations/get-connectivity-service-audit-list"] = tapi_connectivity_audit.NewPostOperationsGetConnectivityServiceAuditList(o.context, o.TapiConnectivityAuditPostOperationsGetConnectivityServiceAuditListHandler)
 
 	if o.handlers["POST"] == nil {
 		o.handlers["POST"] = make(map[string]http.Handler)

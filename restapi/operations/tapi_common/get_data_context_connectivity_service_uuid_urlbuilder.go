@@ -38,7 +38,7 @@ func (o *GetDataContextConnectivityServiceUUIDURL) SetBasePath(bp string) {
 
 // Build a url path and query string
 func (o *GetDataContextConnectivityServiceUUIDURL) Build() (*url.URL, error) {
-	var result url.URL
+	var _result url.URL
 
 	var _path = "/data/context/connectivity-service={uuid}/"
 
@@ -50,12 +50,9 @@ func (o *GetDataContextConnectivityServiceUUIDURL) Build() (*url.URL, error) {
 	}
 
 	_basePath := o._basePath
-	if _basePath == "" {
-		_basePath = "/restconf"
-	}
-	result.Path = golangswaggerpaths.Join(_basePath, _path)
+	_result.Path = golangswaggerpaths.Join(_basePath, _path)
 
-	return &result, nil
+	return &_result, nil
 }
 
 // Must is a helper function to panic when the url builder returns an error

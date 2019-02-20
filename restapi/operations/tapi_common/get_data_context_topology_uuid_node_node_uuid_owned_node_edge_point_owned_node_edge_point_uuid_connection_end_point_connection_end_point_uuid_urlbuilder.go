@@ -41,7 +41,7 @@ func (o *GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePo
 
 // Build a url path and query string
 func (o *GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL) Build() (*url.URL, error) {
-	var result url.URL
+	var _result url.URL
 
 	var _path = "/data/context/topology={uuid}/node={node-uuid}/owned-node-edge-point={owned-node-edge-point-uuid}/connection-end-point={connection-end-point-uuid}/"
 
@@ -74,12 +74,9 @@ func (o *GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePo
 	}
 
 	_basePath := o._basePath
-	if _basePath == "" {
-		_basePath = "/restconf"
-	}
-	result.Path = golangswaggerpaths.Join(_basePath, _path)
+	_result.Path = golangswaggerpaths.Join(_basePath, _path)
 
-	return &result, nil
+	return &_result, nil
 }
 
 // Must is a helper function to panic when the url builder returns an error

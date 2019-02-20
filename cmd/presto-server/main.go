@@ -27,8 +27,8 @@ func main() {
 	defer server.Shutdown()
 
 	parser := flags.NewParser(server, flags.Default)
-	parser.ShortDescription = "mef-common,tapi-topology,tapi-common,tapi-connectivity,mef-common-types,nrm-connectivity,nrp-interface API"
-	parser.LongDescription = "MEF 60 (PRESTO NRP) swagger definition"
+	parser.ShortDescription = "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API"
+	parser.LongDescription = "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions"
 
 	server.ConfigureFlags()
 	for _, optsGroup := range api.CommandLineOptionsGroups {
