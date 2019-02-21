@@ -77,14 +77,14 @@ func (m *TapiConnectivityAuditGetConnectivityServiceAuditListOutput) UnmarshalBi
 type TapiConnectivityAuditGetConnectivityServiceAuditListOutputOutput struct {
 
 	// none
-	Service []*TapiConnectivityAuditConnectivityServiceAudit `json:"service"`
+	ServiceAudit []*TapiConnectivityAuditGetconnectivityserviceauditlistOutputServiceAudit `json:"service-audit"`
 }
 
 // Validate validates this tapi connectivity audit get connectivity service audit list output output
 func (m *TapiConnectivityAuditGetConnectivityServiceAuditListOutputOutput) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateService(formats); err != nil {
+	if err := m.validateServiceAudit(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -94,21 +94,21 @@ func (m *TapiConnectivityAuditGetConnectivityServiceAuditListOutputOutput) Valid
 	return nil
 }
 
-func (m *TapiConnectivityAuditGetConnectivityServiceAuditListOutputOutput) validateService(formats strfmt.Registry) error {
+func (m *TapiConnectivityAuditGetConnectivityServiceAuditListOutputOutput) validateServiceAudit(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Service) { // not required
+	if swag.IsZero(m.ServiceAudit) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Service); i++ {
-		if swag.IsZero(m.Service[i]) { // not required
+	for i := 0; i < len(m.ServiceAudit); i++ {
+		if swag.IsZero(m.ServiceAudit[i]) { // not required
 			continue
 		}
 
-		if m.Service[i] != nil {
-			if err := m.Service[i].Validate(formats); err != nil {
+		if m.ServiceAudit[i] != nil {
+			if err := m.ServiceAudit[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("output" + "." + "service" + "." + strconv.Itoa(i))
+					return ve.ValidateName("output" + "." + "service-audit" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

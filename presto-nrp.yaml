@@ -1,10 +1,10 @@
 ---
 swagger: "2.0"
 info:
-  description: "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity\
+  description: "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity\
     \ API generated from yang definitions"
   version: "1.0"
-  title: "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity\
+  title: "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity\
     \ API"
 host: "localhost:1234"
 consumes:
@@ -1220,6 +1220,15 @@ definitions:
         description: "If true, then untagged and priority tagged frames are included\
           \ in the mapping, otherwise not."
         default: false
+  nrp.audit.interface.EndPointAugmentation1:
+    type: "object"
+    properties:
+      nrp-carrier-eth-connectivity-end-point-resource:
+        description: "none"
+        $ref: "#/definitions/nrp.interface.NrpCarrierEthConnectivityEndPointResource"
+    x-augmentation:
+      prefix: "nrp-audit-interface"
+      namespace: "urn:mef:yang:nrp-audit-interface"
   nrp.interface.ConnectivityServiceAugmentation1:
     type: "object"
     properties:
@@ -2448,26 +2457,6 @@ definitions:
           service:
             description: "none"
             $ref: "#/definitions/tapi.connectivity.updateconnectivityservice.output.Service"
-  tapi.connectivity.audit.ConnectivityServiceAudit:
-    allOf:
-    - $ref: "#/definitions/tapi.common.AdminStatePac"
-    - $ref: "#/definitions/tapi.common.GlobalClass"
-    - type: "object"
-      properties:
-        date-commissioned:
-          type: "string"
-          description: "Date and time the connectivity service was created."
-        connectivity-service-name:
-          type: "string"
-          description: "Name of the connectivity service."
-        end-point:
-          type: "array"
-          description: "none"
-          items:
-            $ref: "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
-        date-decommissioned:
-          type: "string"
-          description: "Date and time the connectivity service was deleted."
   tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput:
     properties:
       input:
@@ -2483,17 +2472,67 @@ definitions:
         properties:
           service-audit:
             description: "none"
-            $ref: "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+            $ref: "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditdetails.output.ServiceAudit"
   tapi.connectivity.audit.GetConnectivityServiceAuditListOutput:
     properties:
       output:
         type: "object"
         properties:
-          service:
+          service-audit:
             type: "array"
             description: "none"
             items:
-              $ref: "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+              $ref: "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditlist.output.ServiceAudit"
+  tapi.connectivity.audit.getconnectivityserviceauditdetails.output.ServiceAudit:
+    allOf:
+    - $ref: "#/definitions/tapi.common.AdminStatePac"
+    - $ref: "#/definitions/tapi.common.GlobalClass"
+    - type: "object"
+      properties:
+        date-commissioned:
+          type: "string"
+          description: "Date and time the connectivity service was created."
+        connectivity-service-name:
+          type: "string"
+          description: "Name of the connectivity service."
+        end-point:
+          type: "array"
+          description: "none"
+          items:
+            $ref: "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditdetails.output.serviceaudit.EndPoint"
+        date-decommissioned:
+          type: "string"
+          description: "Date and time the connectivity service was deleted."
+      description: "none"
+  tapi.connectivity.audit.getconnectivityserviceauditdetails.output.serviceaudit.EndPoint:
+    allOf:
+    - $ref: "#/definitions/nrp.audit.interface.EndPointAugmentation1"
+    - $ref: "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
+  tapi.connectivity.audit.getconnectivityserviceauditlist.output.ServiceAudit:
+    allOf:
+    - $ref: "#/definitions/tapi.common.AdminStatePac"
+    - $ref: "#/definitions/tapi.common.GlobalClass"
+    - type: "object"
+      properties:
+        date-commissioned:
+          type: "string"
+          description: "Date and time the connectivity service was created."
+        connectivity-service-name:
+          type: "string"
+          description: "Name of the connectivity service."
+        end-point:
+          type: "array"
+          description: "none"
+          items:
+            $ref: "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditlist.output.serviceaudit.EndPoint"
+        date-decommissioned:
+          type: "string"
+          description: "Date and time the connectivity service was deleted."
+      description: "none"
+  tapi.connectivity.audit.getconnectivityserviceauditlist.output.serviceaudit.EndPoint:
+    allOf:
+    - $ref: "#/definitions/nrp.audit.interface.EndPointAugmentation1"
+    - $ref: "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
   tapi.connectivity.connectivitycontext.ConnectivityService:
     allOf:
     - $ref: "#/definitions/nrp.interface.ConnectivityServiceAugmentation1"

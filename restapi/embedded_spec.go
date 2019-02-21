@@ -26,8 +26,8 @@ func init() {
   ],
   "swagger": "2.0",
   "info": {
-    "description": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions",
-    "title": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API",
+    "description": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions",
+    "title": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API",
     "version": "1.0"
   },
   "host": "localhost:1234",
@@ -1680,6 +1680,19 @@ func init() {
         }
       }
     },
+    "nrp.audit.interface.EndPointAugmentation1": {
+      "type": "object",
+      "properties": {
+        "nrp-carrier-eth-connectivity-end-point-resource": {
+          "description": "none",
+          "$ref": "#/definitions/nrp.interface.NrpCarrierEthConnectivityEndPointResource"
+        }
+      },
+      "x-augmentation": {
+        "namespace": "urn:mef:yang:nrp-audit-interface",
+        "prefix": "nrp-audit-interface"
+      }
+    },
     "nrp.interface.ConnectivityServiceAugmentation1": {
       "type": "object",
       "properties": {
@@ -3227,40 +3240,6 @@ func init() {
         }
       }
     },
-    "tapi.connectivity.audit.ConnectivityServiceAudit": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/tapi.common.AdminStatePac"
-        },
-        {
-          "$ref": "#/definitions/tapi.common.GlobalClass"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "connectivity-service-name": {
-              "description": "Name of the connectivity service.",
-              "type": "string"
-            },
-            "date-commissioned": {
-              "description": "Date and time the connectivity service was created.",
-              "type": "string"
-            },
-            "date-decommissioned": {
-              "description": "Date and time the connectivity service was deleted.",
-              "type": "string"
-            },
-            "end-point": {
-              "description": "none",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
-              }
-            }
-          }
-        }
-      ]
-    },
     "tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput": {
       "properties": {
         "input": {
@@ -3281,7 +3260,7 @@ func init() {
           "properties": {
             "service-audit": {
               "description": "none",
-              "$ref": "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+              "$ref": "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditdetails.output.ServiceAudit"
             }
           }
         }
@@ -3292,16 +3271,106 @@ func init() {
         "output": {
           "type": "object",
           "properties": {
-            "service": {
+            "service-audit": {
               "description": "none",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+                "$ref": "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditlist.output.ServiceAudit"
               }
             }
           }
         }
       }
+    },
+    "tapi.connectivity.audit.getconnectivityserviceauditdetails.output.ServiceAudit": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/tapi.common.AdminStatePac"
+        },
+        {
+          "$ref": "#/definitions/tapi.common.GlobalClass"
+        },
+        {
+          "description": "none",
+          "type": "object",
+          "properties": {
+            "connectivity-service-name": {
+              "description": "Name of the connectivity service.",
+              "type": "string"
+            },
+            "date-commissioned": {
+              "description": "Date and time the connectivity service was created.",
+              "type": "string"
+            },
+            "date-decommissioned": {
+              "description": "Date and time the connectivity service was deleted.",
+              "type": "string"
+            },
+            "end-point": {
+              "description": "none",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditdetails.output.serviceaudit.EndPoint"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tapi.connectivity.audit.getconnectivityserviceauditdetails.output.serviceaudit.EndPoint": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/nrp.audit.interface.EndPointAugmentation1"
+        },
+        {
+          "$ref": "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
+        }
+      ]
+    },
+    "tapi.connectivity.audit.getconnectivityserviceauditlist.output.ServiceAudit": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/tapi.common.AdminStatePac"
+        },
+        {
+          "$ref": "#/definitions/tapi.common.GlobalClass"
+        },
+        {
+          "description": "none",
+          "type": "object",
+          "properties": {
+            "connectivity-service-name": {
+              "description": "Name of the connectivity service.",
+              "type": "string"
+            },
+            "date-commissioned": {
+              "description": "Date and time the connectivity service was created.",
+              "type": "string"
+            },
+            "date-decommissioned": {
+              "description": "Date and time the connectivity service was deleted.",
+              "type": "string"
+            },
+            "end-point": {
+              "description": "none",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditlist.output.serviceaudit.EndPoint"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tapi.connectivity.audit.getconnectivityserviceauditlist.output.serviceaudit.EndPoint": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/nrp.audit.interface.EndPointAugmentation1"
+        },
+        {
+          "$ref": "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
+        }
+      ]
     },
     "tapi.connectivity.connectivitycontext.ConnectivityService": {
       "allOf": [
@@ -4893,8 +4962,8 @@ func init() {
   ],
   "swagger": "2.0",
   "info": {
-    "description": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions",
-    "title": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API",
+    "description": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions",
+    "title": "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API",
     "version": "1.0"
   },
   "host": "localhost:1234",
@@ -6547,6 +6616,19 @@ func init() {
         }
       }
     },
+    "nrp.audit.interface.EndPointAugmentation1": {
+      "type": "object",
+      "properties": {
+        "nrp-carrier-eth-connectivity-end-point-resource": {
+          "description": "none",
+          "$ref": "#/definitions/nrp.interface.NrpCarrierEthConnectivityEndPointResource"
+        }
+      },
+      "x-augmentation": {
+        "namespace": "urn:mef:yang:nrp-audit-interface",
+        "prefix": "nrp-audit-interface"
+      }
+    },
     "nrp.interface.ConnectivityServiceAugmentation1": {
       "type": "object",
       "properties": {
@@ -8094,40 +8176,6 @@ func init() {
         }
       }
     },
-    "tapi.connectivity.audit.ConnectivityServiceAudit": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/tapi.common.AdminStatePac"
-        },
-        {
-          "$ref": "#/definitions/tapi.common.GlobalClass"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "connectivity-service-name": {
-              "description": "Name of the connectivity service.",
-              "type": "string"
-            },
-            "date-commissioned": {
-              "description": "Date and time the connectivity service was created.",
-              "type": "string"
-            },
-            "date-decommissioned": {
-              "description": "Date and time the connectivity service was deleted.",
-              "type": "string"
-            },
-            "end-point": {
-              "description": "none",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
-              }
-            }
-          }
-        }
-      ]
-    },
     "tapi.connectivity.audit.GetConnectivityServiceAuditDetailsInput": {
       "properties": {
         "input": {
@@ -8148,7 +8196,7 @@ func init() {
           "properties": {
             "service-audit": {
               "description": "none",
-              "$ref": "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+              "$ref": "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditdetails.output.ServiceAudit"
             }
           }
         }
@@ -8159,16 +8207,106 @@ func init() {
         "output": {
           "type": "object",
           "properties": {
-            "service": {
+            "service-audit": {
               "description": "none",
               "type": "array",
               "items": {
-                "$ref": "#/definitions/tapi.connectivity.audit.ConnectivityServiceAudit"
+                "$ref": "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditlist.output.ServiceAudit"
               }
             }
           }
         }
       }
+    },
+    "tapi.connectivity.audit.getconnectivityserviceauditdetails.output.ServiceAudit": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/tapi.common.AdminStatePac"
+        },
+        {
+          "$ref": "#/definitions/tapi.common.GlobalClass"
+        },
+        {
+          "description": "none",
+          "type": "object",
+          "properties": {
+            "connectivity-service-name": {
+              "description": "Name of the connectivity service.",
+              "type": "string"
+            },
+            "date-commissioned": {
+              "description": "Date and time the connectivity service was created.",
+              "type": "string"
+            },
+            "date-decommissioned": {
+              "description": "Date and time the connectivity service was deleted.",
+              "type": "string"
+            },
+            "end-point": {
+              "description": "none",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditdetails.output.serviceaudit.EndPoint"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tapi.connectivity.audit.getconnectivityserviceauditdetails.output.serviceaudit.EndPoint": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/nrp.audit.interface.EndPointAugmentation1"
+        },
+        {
+          "$ref": "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
+        }
+      ]
+    },
+    "tapi.connectivity.audit.getconnectivityserviceauditlist.output.ServiceAudit": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/tapi.common.AdminStatePac"
+        },
+        {
+          "$ref": "#/definitions/tapi.common.GlobalClass"
+        },
+        {
+          "description": "none",
+          "type": "object",
+          "properties": {
+            "connectivity-service-name": {
+              "description": "Name of the connectivity service.",
+              "type": "string"
+            },
+            "date-commissioned": {
+              "description": "Date and time the connectivity service was created.",
+              "type": "string"
+            },
+            "date-decommissioned": {
+              "description": "Date and time the connectivity service was deleted.",
+              "type": "string"
+            },
+            "end-point": {
+              "description": "none",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/tapi.connectivity.audit.getconnectivityserviceauditlist.output.serviceaudit.EndPoint"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "tapi.connectivity.audit.getconnectivityserviceauditlist.output.serviceaudit.EndPoint": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/nrp.audit.interface.EndPointAugmentation1"
+        },
+        {
+          "$ref": "#/definitions/tapi.connectivity.ConnectivityServiceEndPoint"
+        }
+      ]
     },
     "tapi.connectivity.connectivitycontext.ConnectivityService": {
       "allOf": [

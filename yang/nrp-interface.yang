@@ -105,6 +105,7 @@ module nrp-interface {
         uses nrp-connectivity-service-end-point-attrs;
         description "none";
     }
+
     /***********************
     * package diagrams
     **********************/ 
