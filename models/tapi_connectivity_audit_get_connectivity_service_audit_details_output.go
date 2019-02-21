@@ -75,7 +75,7 @@ func (m *TapiConnectivityAuditGetConnectivityServiceAuditDetailsOutput) Unmarsha
 type TapiConnectivityAuditGetConnectivityServiceAuditDetailsOutputOutput struct {
 
 	// none
-	ServiceAudit *TapiConnectivityAuditConnectivityServiceAudit `json:"service-audit,omitempty"`
+	ServiceAudit *TapiConnectivityAuditGetconnectivityserviceauditdetailsOutputServiceAudit `json:"service-audit,omitempty"`
 }
 
 // Validate validates this tapi connectivity audit get connectivity service audit details output output

@@ -1,0 +1,39 @@
+module nrp-audit-interface {
+    namespace "urn:mef:yang:nrp-audit-interface";
+    prefix nrp-audit-interface;
+    import tapi-connectivity-audit {
+        prefix tapi-connectivity-audit;
+    }
+        import tapi-connectivity {
+            prefix tapi-connectivity;
+        }
+    import tapi-common {
+        prefix tapi-common;
+    }
+    import nrm-connectivity {
+        prefix nrm-connectivity;
+    }
+    import nrp-interface {
+        prefix nrp-interface;
+    }
+    organization "Metro Ethernet Forum (MEF)";
+    contact "MEF";
+    description "MEF NRP Classes
+        MEF NRM Classes
+        MEF-Types Enumerations
+        MEF-Common Classes";
+    revision 2018-03-21 {
+        description "MEF NRP R2";
+        reference "MEF 60, ONF-TR-527, ONF-TR-512, ONF-TR-531, RFC 6020 and RFC 6087";
+    }
+
+    augment "/tapi-connectivity-audit:get-connectivity-service-audit-list/tapi-connectivity-audit:output/tapi-connectivity-audit:service-audit/tapi-connectivity-audit:end-point" {
+        uses nrp-interface:nrp-connectivity-service-end-point-attrs;
+        description "none";
+    }
+
+    augment "/tapi-connectivity-audit:get-connectivity-service-audit-details/tapi-connectivity-audit:output/tapi-connectivity-audit:service-audit/tapi-connectivity-audit:end-point" {
+        uses nrp-interface:nrp-connectivity-service-end-point-attrs;
+        description "none";
+    }
+}

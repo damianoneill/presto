@@ -148,7 +148,7 @@ func NewPrestoAPI(spec *loads.Document) *PrestoAPI {
 	}
 }
 
-/*PrestoAPI mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions */
+/*PrestoAPI mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions */
 type PrestoAPI struct {
 	spec            *loads.Document
 	context         *middleware.Context

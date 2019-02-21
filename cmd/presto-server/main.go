@@ -27,8 +27,8 @@ func main() {
 	defer server.Shutdown()
 
 	parser := flags.NewParser(server, flags.Default)
-	parser.ShortDescription = "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API"
-	parser.LongDescription = "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions"
+	parser.ShortDescription = "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API"
+	parser.LongDescription = "mef-common-types,tapi-connectivity-audit,tapi-topology,nrp-interface,tapi-common,nrp-audit-interface,mef-common,nrm-connectivity,tapi-path-computation,tapi-connectivity API generated from yang definitions"
 
 	server.ConfigureFlags()
 	for _, optsGroup := range api.CommandLineOptionsGroups {

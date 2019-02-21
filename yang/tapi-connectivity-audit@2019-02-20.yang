@@ -59,7 +59,7 @@ module tapi-connectivity-audit {
         rpc get-connectivity-service-audit-list {
             description "none";
             output {
-                list service {
+                list service-audit {
                     uses connectivity-service-audit;
                     description "none";
                 }
