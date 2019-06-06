@@ -48,21 +48,21 @@ func (o *GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePo
 	if nodeUUID != "" {
 		_path = strings.Replace(_path, "{node-uuid}", nodeUUID, -1)
 	} else {
-		return nil, errors.New("NodeUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDURL")
+		return nil, errors.New("nodeUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDURL")
 	}
 
 	ownedNodeEdgePointUUID := o.OwnedNodeEdgePointUUID
 	if ownedNodeEdgePointUUID != "" {
 		_path = strings.Replace(_path, "{owned-node-edge-point-uuid}", ownedNodeEdgePointUUID, -1)
 	} else {
-		return nil, errors.New("OwnedNodeEdgePointUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDURL")
+		return nil, errors.New("ownedNodeEdgePointUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDURL")
 	}
 
 	uuid := o.UUID
 	if uuid != "" {
 		_path = strings.Replace(_path, "{uuid}", uuid, -1)
 	} else {
-		return nil, errors.New("UUID is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDURL")
+		return nil, errors.New("uuid is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDURL")
 	}
 
 	_basePath := o._basePath

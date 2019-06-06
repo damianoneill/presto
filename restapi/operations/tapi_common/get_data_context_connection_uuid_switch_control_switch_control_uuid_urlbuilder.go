@@ -47,14 +47,14 @@ func (o *GetDataContextConnectionUUIDSwitchControlSwitchControlUUIDURL) Build() 
 	if switchControlUUID != "" {
 		_path = strings.Replace(_path, "{switch-control-uuid}", switchControlUUID, -1)
 	} else {
-		return nil, errors.New("SwitchControlUUID is required on GetDataContextConnectionUUIDSwitchControlSwitchControlUUIDURL")
+		return nil, errors.New("switchControlUuid is required on GetDataContextConnectionUUIDSwitchControlSwitchControlUUIDURL")
 	}
 
 	uuid := o.UUID
 	if uuid != "" {
 		_path = strings.Replace(_path, "{uuid}", uuid, -1)
 	} else {
-		return nil, errors.New("UUID is required on GetDataContextConnectionUUIDSwitchControlSwitchControlUUIDURL")
+		return nil, errors.New("uuid is required on GetDataContextConnectionUUIDSwitchControlSwitchControlUUIDURL")
 	}
 
 	_basePath := o._basePath

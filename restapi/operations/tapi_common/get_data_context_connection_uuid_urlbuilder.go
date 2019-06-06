@@ -46,7 +46,7 @@ func (o *GetDataContextConnectionUUIDURL) Build() (*url.URL, error) {
 	if uuid != "" {
 		_path = strings.Replace(_path, "{uuid}", uuid, -1)
 	} else {
-		return nil, errors.New("UUID is required on GetDataContextConnectionUUIDURL")
+		return nil, errors.New("uuid is required on GetDataContextConnectionUUIDURL")
 	}
 
 	_basePath := o._basePath

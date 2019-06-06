@@ -48,21 +48,21 @@ func (o *GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDURL
 	if nodeRuleGroupUUID != "" {
 		_path = strings.Replace(_path, "{node-rule-group-uuid}", nodeRuleGroupUUID, -1)
 	} else {
-		return nil, errors.New("NodeRuleGroupUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDURL")
+		return nil, errors.New("nodeRuleGroupUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDURL")
 	}
 
 	nodeUUID := o.NodeUUID
 	if nodeUUID != "" {
 		_path = strings.Replace(_path, "{node-uuid}", nodeUUID, -1)
 	} else {
-		return nil, errors.New("NodeUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDURL")
+		return nil, errors.New("nodeUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDURL")
 	}
 
 	uuid := o.UUID
 	if uuid != "" {
 		_path = strings.Replace(_path, "{uuid}", uuid, -1)
 	} else {
-		return nil, errors.New("UUID is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDURL")
+		return nil, errors.New("uuid is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDURL")
 	}
 
 	_basePath := o._basePath

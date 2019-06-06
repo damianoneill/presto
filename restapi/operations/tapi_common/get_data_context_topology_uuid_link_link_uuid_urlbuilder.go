@@ -47,14 +47,14 @@ func (o *GetDataContextTopologyUUIDLinkLinkUUIDURL) Build() (*url.URL, error) {
 	if linkUUID != "" {
 		_path = strings.Replace(_path, "{link-uuid}", linkUUID, -1)
 	} else {
-		return nil, errors.New("LinkUUID is required on GetDataContextTopologyUUIDLinkLinkUUIDURL")
+		return nil, errors.New("linkUuid is required on GetDataContextTopologyUUIDLinkLinkUUIDURL")
 	}
 
 	uuid := o.UUID
 	if uuid != "" {
 		_path = strings.Replace(_path, "{uuid}", uuid, -1)
 	} else {
-		return nil, errors.New("UUID is required on GetDataContextTopologyUUIDLinkLinkUUIDURL")
+		return nil, errors.New("uuid is required on GetDataContextTopologyUUIDLinkLinkUUIDURL")
 	}
 
 	_basePath := o._basePath

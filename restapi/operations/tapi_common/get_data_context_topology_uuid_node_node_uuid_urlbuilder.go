@@ -47,14 +47,14 @@ func (o *GetDataContextTopologyUUIDNodeNodeUUIDURL) Build() (*url.URL, error) {
 	if nodeUUID != "" {
 		_path = strings.Replace(_path, "{node-uuid}", nodeUUID, -1)
 	} else {
-		return nil, errors.New("NodeUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDURL")
+		return nil, errors.New("nodeUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDURL")
 	}
 
 	uuid := o.UUID
 	if uuid != "" {
 		_path = strings.Replace(_path, "{uuid}", uuid, -1)
 	} else {
-		return nil, errors.New("UUID is required on GetDataContextTopologyUUIDNodeNodeUUIDURL")
+		return nil, errors.New("uuid is required on GetDataContextTopologyUUIDNodeNodeUUIDURL")
 	}
 
 	_basePath := o._basePath

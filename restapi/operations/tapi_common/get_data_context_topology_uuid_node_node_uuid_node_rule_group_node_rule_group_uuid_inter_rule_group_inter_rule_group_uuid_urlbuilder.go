@@ -49,28 +49,28 @@ func (o *GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInt
 	if interRuleGroupUUID != "" {
 		_path = strings.Replace(_path, "{inter-rule-group-uuid}", interRuleGroupUUID, -1)
 	} else {
-		return nil, errors.New("InterRuleGroupUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInterRuleGroupInterRuleGroupUUIDURL")
+		return nil, errors.New("interRuleGroupUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInterRuleGroupInterRuleGroupUUIDURL")
 	}
 
 	nodeRuleGroupUUID := o.NodeRuleGroupUUID
 	if nodeRuleGroupUUID != "" {
 		_path = strings.Replace(_path, "{node-rule-group-uuid}", nodeRuleGroupUUID, -1)
 	} else {
-		return nil, errors.New("NodeRuleGroupUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInterRuleGroupInterRuleGroupUUIDURL")
+		return nil, errors.New("nodeRuleGroupUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInterRuleGroupInterRuleGroupUUIDURL")
 	}
 
 	nodeUUID := o.NodeUUID
 	if nodeUUID != "" {
 		_path = strings.Replace(_path, "{node-uuid}", nodeUUID, -1)
 	} else {
-		return nil, errors.New("NodeUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInterRuleGroupInterRuleGroupUUIDURL")
+		return nil, errors.New("nodeUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInterRuleGroupInterRuleGroupUUIDURL")
 	}
 
 	uuid := o.UUID
 	if uuid != "" {
 		_path = strings.Replace(_path, "{uuid}", uuid, -1)
 	} else {
-		return nil, errors.New("UUID is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInterRuleGroupInterRuleGroupUUIDURL")
+		return nil, errors.New("uuid is required on GetDataContextTopologyUUIDNodeNodeUUIDNodeRuleGroupNodeRuleGroupUUIDInterRuleGroupInterRuleGroupUUIDURL")
 	}
 
 	_basePath := o._basePath

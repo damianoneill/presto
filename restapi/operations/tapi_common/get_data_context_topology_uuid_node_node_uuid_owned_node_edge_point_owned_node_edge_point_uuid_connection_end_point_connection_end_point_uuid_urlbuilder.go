@@ -49,28 +49,28 @@ func (o *GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePo
 	if connectionEndPointUUID != "" {
 		_path = strings.Replace(_path, "{connection-end-point-uuid}", connectionEndPointUUID, -1)
 	} else {
-		return nil, errors.New("ConnectionEndPointUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL")
+		return nil, errors.New("connectionEndPointUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL")
 	}
 
 	nodeUUID := o.NodeUUID
 	if nodeUUID != "" {
 		_path = strings.Replace(_path, "{node-uuid}", nodeUUID, -1)
 	} else {
-		return nil, errors.New("NodeUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL")
+		return nil, errors.New("nodeUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL")
 	}
 
 	ownedNodeEdgePointUUID := o.OwnedNodeEdgePointUUID
 	if ownedNodeEdgePointUUID != "" {
 		_path = strings.Replace(_path, "{owned-node-edge-point-uuid}", ownedNodeEdgePointUUID, -1)
 	} else {
-		return nil, errors.New("OwnedNodeEdgePointUUID is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL")
+		return nil, errors.New("ownedNodeEdgePointUuid is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL")
 	}
 
 	uuid := o.UUID
 	if uuid != "" {
 		_path = strings.Replace(_path, "{uuid}", uuid, -1)
 	} else {
-		return nil, errors.New("UUID is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL")
+		return nil, errors.New("uuid is required on GetDataContextTopologyUUIDNodeNodeUUIDOwnedNodeEdgePointOwnedNodeEdgePointUUIDConnectionEndPointConnectionEndPointUUIDURL")
 	}
 
 	_basePath := o._basePath
